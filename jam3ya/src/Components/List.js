@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Listitem from "./ChatRoomitem";
+import Listitem from "./Listitem";
 import CreateJam3yaModal from "./CreateJam3yaModal";
 import jam3yaStore from "../stores/jam3yaStore";
 import {observer} from "mobx-react"; 
@@ -11,15 +11,13 @@ function List() {
 
   const openModal = () => setIsOpen(true);
 
-  const jam3yasList = jam3yaStore.jam3ya.map((jam3ya) => {
-    return (
-      <Listitem
-        jam3ya={jam3ya}
-        key={jam3ya.id}
-       
-      />
-    );
-  });
+  const jam3yasList = jam3yaStore.jam3yas.map((jam3ya) => 
+  <Listitem
+  jam3ya={jam3ya}
+  key={jam3ya.id}
+  />
+  );
+console.log("jam3yasList",jam3yasList);
   return (
     <div className="main__chatlist">
       <button className="btn">
@@ -37,7 +35,7 @@ function List() {
         </div>
       </center>
 
-      <div className="chatlist__items">{jam3yas}</div>
+      <div className="chatlist__items">{jam3yasList}</div>
     </div>
   );
 }

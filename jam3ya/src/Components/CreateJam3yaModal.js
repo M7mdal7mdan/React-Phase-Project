@@ -1,6 +1,6 @@
 import { Modal, Button, InputGroup, Form } from "react-bootstrap";
 import React, { useState } from "react";
-import jam3yaStore from "../jam3yaStore";
+import jam3yaStore from "../stores/jam3yaStore";
 
 export default function CreateJam3yaModal(props) {
   const [jam3ya, setJam3ya] = useState({

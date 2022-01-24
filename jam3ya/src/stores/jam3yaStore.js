@@ -18,7 +18,7 @@ makeObservable(this,{
 fetchJam3ya = async () => {
     try {
       const response = await axios.get(
-        "https://coded-task-axios-be.herokuapp.com/rooms"
+        "https://coded-miniproject-jam3ya-be.herokuapp.com/jam3ya"
       );
       this.jam3yas=response.data;
       this.loading=false;
@@ -29,10 +29,10 @@ fetchJam3ya = async () => {
     createJam3ya = async (newJam3ya) => {
     try {
       const response = await axios.post(
-        "https://coded-task-axios-be.herokuapp.com/rooms",
+        "https://coded-miniproject-jam3ya-be.herokuapp.com/jam3ya",
         newJam3ya
       );
-      this.jam3yas.push(newJam3ya)
+      this.jam3yas.push(response.data)
     } catch (error) {
       console.log(error);
     }
@@ -40,8 +40,8 @@ fetchJam3ya = async () => {
 
      deleteJam3ya = async (id) => {
     try {
-      const response = await axios.delete(
-        `https://coded-task-axios-be.herokuapp.com/rooms/${id}`
+      await axios.delete(
+        `https://coded-miniproject-jam3ya-be.herokuapp.com/jam3ya/${id}`
       );
       let tempJam3yas = this.jam3yas.filter((jam3ya) => jam3ya.id !== id);
       this.jam3yas = tempJam3yas;
@@ -53,7 +53,7 @@ fetchJam3ya = async () => {
       updateJam3ya = async (updatedJam3ya) => {
     try {
       const response = await axios.put(
-        `https://coded-task-axios-be.herokuapp.com/rooms/${updatedJam3ya.id}`,
+        `https://coded-miniproject-jam3ya-be.herokuapp.com/jam3ya/${updatedJam3ya.id}`,
         updatedJam3ya
       );
      let tempJam3yas = this.jam3yas.map((jam3ya) =>
