@@ -1,52 +1,86 @@
-import { Button } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import UpdateJam3yaModal from "./UpdateJam3yaModal";
 import jam3yaStore from "../stores/jam3yaStore";
-
-export default function Listitem(props) {
+import authStore from "../stores/authStore";
+import { observer } from "mobx-react";
+function Listitem(props) {
   const jam3ya = props.jam3ya;
+  const { slug } = useParams();
+  const userexist = jam3ya.users.some((u) => u._id === authStore.user._id);
   const [isOpen, setIsOpen] = useState(false);
-
   const closeModal = () => setIsOpen(false);
 
   const openModal = () => setIsOpen(true);
 
   const handleDelete = () => {
-    jam3yaStore.deletejam3ya(jam3ya.id);
+    jam3yaStore.deletejam3ya(jam3ya);
   };
-  return (
-    <div className="group">
-      <Link to={`/jam3ya/${jam3ya.slug}`}>
-        <div style={{ animationDelay: "0.1" }} className="chatlist__item">
-          <div className="avatar">
-            <div className="avatar-img">
-              <img src={jam3ya.image} alt="#" />
-            </div>
-          </div>
-          <div className="userMeta">
-            <p>{jam3ya.title}</p>
-            <p>{jam3ya.limit}</p>
-            <p>{jam3ya.startDate}</p>
-            <p>{jam3ya.endDate}</p>
-            {/* <p>{jam3ya.users}</p> */}
-            
-          </div>
-        </div>
-      </Link>
+  const handleJoin = () => {
+    jam3yaStore.joinJam3ya(authStore.user, jam3ya);
+  };
+  const handleLeave = () => {
+    jam3yaStore.leaveJam3ya(authStore.user, jam3ya);
+  };
+  const noewDate = new Date();
 
-      <Button className="delete" onClick={handleDelete}>
-        Delete
-      </Button>
-      <Button className="delete" onClick={openModal}>
-        Update
-      </Button>
+  const checkJam3ya = () => {
+    if (jam3ya.startDate) {
+      if (new Date(jam3ya.startDate) > new Date()) return true;
+      return false;
+    }
+  };
+
+  return (
+    <>
+      <divs>
+        <Card style={{ width: "20rem" }}>
+          <Card.Title>{jam3ya.title}</Card.Title>
+          <Link to={`/jam3ya/${jam3ya.slug}`}>
+            <Card.Img variant="top" src={jam3ya.image} />
+          </Link>
+          <Card.Body>
+            <Card.Text>
+              Start date:{" "}
+              {jam3ya.startDate ? Date(jam3ya.startDate) : "No date provided"}
+            </Card.Text>
+            <Card.Text>
+              End date:{" "}
+              {jam3ya.endDate ? Date(jam3ya.endDate) : "No date provided"}
+            </Card.Text>
+            {authStore.user && (
+              <>
+                {checkJam3ya() && !userexist && (
+                  <Button variant="primary" onClick={handleJoin}>
+                    Join
+                  </Button>
+                )}
+
+                {userexist && (
+                  <Button variant="primary" onClick={handleLeave}>
+                    Leave
+                  </Button>
+                )}
+              </>
+            )}
+            <Button className="delete" onClick={handleDelete}>
+              Delete
+            </Button>
+            <Button className="delete" onClick={openModal}>
+              Update
+            </Button>
+          </Card.Body>
+        </Card>
+      </divs>
+
       <UpdateJam3yaModal
         isOpen={isOpen}
         closeModal={closeModal}
         jam3ya={jam3ya}
         updatejam3ya={jam3yaStore.updatejam3ya}
       />
-    </div>
+    </>
   );
 }
+export default observer(Listitem);
