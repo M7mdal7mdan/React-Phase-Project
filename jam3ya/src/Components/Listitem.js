@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Updatejam3yaModal from "./Updatejam3yaModal";
+import UpdateJam3yaModal from "./UpdateJam3yaModal";
 import jam3yaStore from "../stores/jam3yaStore";
 
 export default function Listitem(props) {
@@ -29,7 +29,7 @@ export default function Listitem(props) {
             <p>{jam3ya.limit}</p>
             <p>{jam3ya.startDate}</p>
             <p>{jam3ya.endDate}</p>
-            <p>{jam3ya.users}</p>
+            {/* <p>{jam3ya.users}</p> */}
             
           </div>
         </div>

@@ -1,10 +1,18 @@
-import logo from './logo.svg';
+import { Route,Routes } from 'react-router-dom';
 import './App.css';
+import List from "./Components/List"
+import React from 'react';
+
 
 function App() {
   return (
-    <div className="App">
-      
+    <div >
+       <Routes>
+        <Route
+          path="/jam3yaList"
+          element={<List />}
+        />
+      </Routes>
     </div>
   );
 }
