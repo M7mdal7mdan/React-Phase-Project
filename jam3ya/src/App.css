@@ -385,7 +385,7 @@ a {
   color: #fff;
 }
 body {
-  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6f1R0BCIl7yZFyJw24rYE5Lya8gzHk_8KtQ&usqp=CAU");
+  /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6f1R0BCIl7yZFyJw24rYE5Lya8gzHk_8KtQ&usqp=CAU"); */
   background-repeat: no-repeat;
   position: fixed;
 }
@@ -396,4 +396,12 @@ body {
   font-style: normal;
   color: #1a374d;
   font-weight: bold;
+}
+*/ .card-flex {
+  display: flex;
+  /* flex: 1 0 21%;
+  margin: 5px;
+  height: 100px; */
+  flex-wrap: wrap;
+  justify-content: center;
 }

@@ -23,6 +23,10 @@ class AuthStore {
   signIn = async (user) => {
     try {
       const response = await api.post("/signin", user);
+      console.log(
+        "🚀 ~ file: authStore.js ~ line 26 ~ AuthStore ~ signIn= ~ response",
+        response.data
+      );
       this.setUser(response.data.token);
     } catch (error) {}
   };
