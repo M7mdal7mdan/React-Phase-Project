@@ -9,7 +9,7 @@ a {
   text-decoration: none;
 }
 #root {
-  background-color: #f0f0f0;
+  color: #b1d0e0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -383,4 +383,17 @@ a {
 #sendMsgBtn {
   background-color: #3b5bfe;
   color: #fff;
+}
+body {
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6f1R0BCIl7yZFyJw24rYE5Lya8gzHk_8KtQ&usqp=CAU");
+  background-repeat: no-repeat;
+  position: fixed;
+}
+
+.welcome {
+  font-size: 30px;
+  font-family: "Courier New", Courier, monospace;
+  font-style: normal;
+  color: #1a374d;
+  font-weight: bold;
 }
