@@ -1,9 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import jam3ya from "../Jam3yaz";
 function Detail() {
-  //   const { slug } = useParams();
-  //   let jam3ya = jam3yastore.jam3ya.find((jam3ya) => jam3ya.slug === slug);
+  const { slug } = useParams();
+  let jam3ya = jam3yastore.jam3ya.find((jam3ya) => jam3ya.slug === slug);
   console.log(jam3ya);
   return (
     <div>

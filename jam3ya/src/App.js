@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+
 import Detail from "./Components/Detail";
 function App() {
   return (
