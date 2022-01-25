@@ -21,7 +21,8 @@ function Listitem(props) {
   const endDate = moment(jam3ya.endDate).format("YYYY-MM-DD");
   const checkJam3ya = () => {
     if (jam3ya.startDate) {
-      if (new Date(jam3ya.startDate) > new Date()) return true;
+      if (new Date(jam3ya.startDate) > new Date())
+        if (jam3ya.users.length < jam3ya.limit) return true;
       return false;
     }
   };
@@ -65,19 +66,13 @@ function Listitem(props) {
               )}
             </>
           )}
-          <Button className="delete" onClick={handleDelete}>
-            Delete
-          </Button>
-          <Button className="delete" onClick={openModal}>
-            Update
-          </Button>
-          {author._id === authStore.user._id && (
+          {jam3ya.author._id === authStore.user._id && (
             <Button className="delete" onClick={handleDelete}>
               Delete
             </Button>
           )}
 
-          {checkJam3ya() && author._id === authStore.user._id && (
+          {checkJam3ya() && jam3ya.author._id === authStore.user._id && (
             <Button className="delete" onClick={openModal}>
               Update
             </Button>
