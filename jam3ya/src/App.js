@@ -11,6 +11,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/List" element={<List />} />
+        <Route path="/jam3ya/:jam3yaSlug" />
       </Routes>
     </div>
   );
