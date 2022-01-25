@@ -1,19 +1,33 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import jam3yaStore from "../stores/jam3yaStore";
-import { Container, Nav, Card, Button } from "react-bootstrap";
+import { Container, Card, Button } from "react-bootstrap";
 import { observer } from "mobx-react";
 import moment from "moment";
+import authStore from "../stores/authStore";
+
 function Detail() {
   const slug = useParams().slug;
   if (jam3yaStore.loading) {
     return <h1>Loading</h1>;
   }
   let jam3ya = jam3yaStore.jam3yas.find((j) => j.slug === slug);
+  const userexist = jam3ya.users.some((u) => u._id === authStore.user._id);
   const startDate = moment(jam3ya.startDate).format("YYYY-MM-DD");
   const endDate = moment(jam3ya.endDate).format("YYYY-MM-DD");
-
-  // startDate = startDate.getUTCHours();
+  const handleJoin = () => {
+    jam3yaStore.joinJam3ya(authStore.user, jam3ya);
+  };
+  const handleLeave = () => {
+    jam3yaStore.leaveJam3ya(jam3ya._id);
+  };
+  const checkJam3ya = () => {
+    if (jam3ya.startDate) {
+      if (new Date(jam3ya.startDate) > new Date())
+        if (jam3ya.users.length < jam3ya.limit) return true;
+      return false;
+    }
+  };
   return (
     <Container fluid>
       <Card
@@ -37,8 +51,22 @@ function Detail() {
               ? jam3ya.limit - jam3ya.users.length
               : "full"}
           </Card.Title>
-          {/* <Button variant="primary">Go somewhere</Button> */}
         </Card.Body>
+        {authStore.user && checkJam3ya() && (
+          <>
+            {!userexist && (
+              <Button variant="primary" onClick={handleJoin}>
+                Join
+              </Button>
+            )}
+
+            {userexist && (
+              <Button variant="primary" onClick={handleLeave}>
+                Leave
+              </Button>
+            )}
+          </>
+        )}
       </Card>
     </Container>
   );
