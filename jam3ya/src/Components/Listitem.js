@@ -21,8 +21,7 @@ function Listitem(props) {
   const endDate = moment(jam3ya.endDate).format("YYYY-MM-DD");
   const checkJam3ya = () => {
     if (jam3ya.startDate) {
-      if (new Date(jam3ya.startDate) > new Date())
-        if (jam3ya.users.length < jam3ya.limit) return true;
+      if (new Date(jam3ya.startDate) > new Date()) return true;
       return false;
     }
   };
@@ -51,9 +50,15 @@ function Listitem(props) {
             End date:&nbsp;
             {endDate ? endDate : "No date provided"}
           </Card.Text>
+          <Card.Text>
+            Remaining spots:{" "}
+            {jam3ya.limit - jam3ya.users.length > 0
+              ? jam3ya.limit - jam3ya.users.length
+              : "full"}
+          </Card.Text>
           {authStore.user && checkJam3ya() && (
             <>
-              {!userexist && (
+              {!userexist && jam3ya.users.length < jam3ya.limit && (
                 <Button variant="primary" onClick={handleJoin}>
                   Join
                 </Button>
