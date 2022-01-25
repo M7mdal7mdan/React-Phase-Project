@@ -64,24 +64,18 @@ class Jam3yaStore {
       await api.post(`/jam3ya/join/${jam3ya._id}`, user);
       jam3ya.users.push(user);
     } catch (error) {
-      console.log(
-        "🚀 ~ file: jam3yaStore.js ~ line 64 ~ Jam3yaStore ~ joinJam3ya= ~ error",
-        error
-      );
+      console.log(error);
     }
   };
-  leaveJam3ya = async (user, jam3yaId) => {
+  leaveJam3ya = async (jam3yaId) => {
     try {
-      const res = await api.post(`/jam3ya/leave/${jam3yaId}`, user);
-      const yaaay = this.jam3yas.map((j) =>
-        j._id === res.data._id ? res.data : j
+      const res = await api.post(`/jam3ya/leave/${jam3yaId}`);
+      const yaaay = this.jam3yas.map((jam3ya) =>
+        jam3ya._id === res.data._id ? res.data : jam3ya
       );
       this.jam3yas = yaaay;
     } catch (error) {
-      console.log(
-        "🚀 ~ file: jam3yaStore.js ~ line 78 ~ Jam3yaStore ~ leaveJam3ya= ~ error",
-        error
-      );
+      console.log(error);
     }
   };
 }
