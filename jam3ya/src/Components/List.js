@@ -14,9 +14,8 @@ function List() {
   const jam3yasList = jam3yaStore.jam3yas.map((jam3ya) => (
     <Listitem jam3ya={jam3ya} key={jam3ya._id} />
   ));
-  console.log("jam3yasList", jam3yasList);
   return (
-    <div className="card-flex">
+    <div className="bg-lightblue">
       <button className="btn ">
         <i className="fa fa-plus"></i>
         <span onClick={openModal}>New Jam3ya</span>
@@ -26,14 +25,12 @@ function List() {
           createJam3ya={jam3yaStore.createJam3ya}
         />
       </button>
-      
-        <div >
+      <center>
+        <div className="chatlist__heading" style={{ marginBottom: "40px" }}>
           <h2>Jam3ya List</h2>
         </div>
-      <div>
-
-      {jam3yasList}
-    </div>
+      </center>
+      <div className="card-flex">{jam3yasList}</div>
     </div>
   );
 }
