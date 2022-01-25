@@ -11,12 +11,6 @@ function Listitem(props) {
   const userexist = jam3ya.users.some((u) => u._id === authStore.user._id);
   const [isOpen, setIsOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
-
-  const openModal = () => setIsOpen(true);
-
-  const handleDelete = () => {
-    jam3yaStore.deletejam3ya(jam3ya);
-  };
   const handleJoin = () => {
     jam3yaStore.joinJam3ya(authStore.user, jam3ya);
   };
@@ -31,60 +25,71 @@ function Listitem(props) {
       return false;
     }
   };
+  const openModal = () => setIsOpen(true);
 
+  const handleDelete = () => {
+    jam3yaStore.deleteJam3ya(jam3ya._id);
+  };
   return (
-    <>
-      <div>
-        <Card
-          border="dark"
-          style={{ width: "20rem" }}
-          className="mb-4 text-center"
-        >
-          <Card.Title>{jam3ya.title}</Card.Title>
-          <Link to={`/jam3ya/${jam3ya.slug}`}>
-            <Card.Img variant="top" src={jam3ya.image} className="img-card" />
-          </Link>
-          <Card.Body>
-            <Card.Text>
-              Start date:&nbsp;
-              {startDate ? startDate : "No date provided"}
-            </Card.Text>
-            <Card.Text>
-              End date:&nbsp;
-              {endDate ? endDate : "No date provided"}
-            </Card.Text>
-            {authStore.user && checkJam3ya() && (
-              <>
-                {!userexist && (
-                  <Button variant="primary" onClick={handleJoin}>
-                    Join
-                  </Button>
-                )}
+    <div>
+      <Card
+        border="dark"
+        style={{ width: "20rem" }}
+        className="mb-4 text-center"
+      >
+        <Card.Title>{jam3ya.title}</Card.Title>
+        <Link to={`/jam3ya/${jam3ya.slug}`}>
+          <Card.Img variant="top" src={jam3ya.image} className="img-card" />
+        </Link>
+        <Card.Body>
+          <Card.Text>
+            Start date:&nbsp;
+            {startDate ? startDate : "No date provided"}
+          </Card.Text>
+          <Card.Text>
+            End date:&nbsp;
+            {endDate ? endDate : "No date provided"}
+          </Card.Text>
+          {authStore.user && checkJam3ya() && (
+            <>
+              {!userexist && (
+                <Button variant="primary" onClick={handleJoin}>
+                  Join
+                </Button>
+              )}
 
-                {userexist && (
-                  <Button variant="primary" onClick={handleLeave}>
-                    Leave
-                  </Button>
-                )}
-              </>
-            )}
+              {userexist && (
+                <Button variant="primary" onClick={handleLeave}>
+                  Leave
+                </Button>
+              )}
+            </>
+          )}
+          <Button className="delete" onClick={handleDelete}>
+            Delete
+          </Button>
+          <Button className="delete" onClick={openModal}>
+            Update
+          </Button>
+          {author._id === authStore.user._id && (
             <Button className="delete" onClick={handleDelete}>
               Delete
             </Button>
+          )}
+
+          {checkJam3ya() && author._id === authStore.user._id && (
             <Button className="delete" onClick={openModal}>
               Update
             </Button>
-          </Card.Body>
-        </Card>
-      </div>
-
-      <UpdateJam3yaModal
-        isOpen={isOpen}
-        closeModal={closeModal}
-        jam3ya={jam3ya}
-        updatejam3ya={jam3yaStore.updatejam3ya}
-      />
-    </>
+          )}
+          <UpdateJam3yaModal
+            isOpen={isOpen}
+            closeModal={closeModal}
+            jam3ya={jam3ya}
+          />
+        </Card.Body>
+      </Card>
+    </div>
   );
 }
 export default observer(Listitem);

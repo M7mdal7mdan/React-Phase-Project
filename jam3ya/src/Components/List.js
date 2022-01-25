@@ -34,4 +34,5 @@ function List() {
     </div>
   );
 }
+
 export default observer(List);
