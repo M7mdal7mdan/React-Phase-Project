@@ -1,5 +1,8 @@
-import { makeObservable, observable, action } from "mobx";
+import { makeObservable, observable, action, configure } from "mobx";
 import api from "./api";
+configure({
+  enforceActions: "never",
+});
 class Jam3yaStore {
   jam3yas = [];
   loading = true;
@@ -7,6 +10,7 @@ class Jam3yaStore {
   constructor() {
     makeObservable(this, {
       jam3yas: observable,
+      loading: observable,
       fetchJam3ya: action,
       createJam3ya: action,
       deleteJam3ya: action,
@@ -57,7 +61,7 @@ class Jam3yaStore {
   };
   joinJam3ya = async (user, jam3ya) => {
     try {
-      const response = await api.post(`/jam3ya/join/${jam3ya._id}`, user);
+      await api.post(`/jam3ya/join/${jam3ya._id}`, user);
       jam3ya.users.push(user);
     } catch (error) {
       console.log(
@@ -66,13 +70,21 @@ class Jam3yaStore {
       );
     }
   };
-  leaveJam3ya = async (user, jam3ya) => {
+  leaveJam3ya = async (user, jam3yaId) => {
     try {
-      await api.post(`/jam3ya/leave/${jam3ya._id}`, user);
-      jam3ya.users.map((u) => u._id !== user._id);
-    } catch (error) {}
+      const res = await api.post(`/jam3ya/leave/${jam3yaId}`, user);
+      const yaaay = this.jam3yas.map((j) =>
+        j._id === res.data._id ? res.data : j
+      );
+      this.jam3yas = yaaay;
+    } catch (error) {
+      console.log(
+        "🚀 ~ file: jam3yaStore.js ~ line 78 ~ Jam3yaStore ~ leaveJam3ya= ~ error",
+        error
+      );
+    }
   };
 }
-const jam3yaStore = new Jam3yaStore();
+let jam3yaStore = new Jam3yaStore();
 jam3yaStore.fetchJam3ya();
 export default jam3yaStore;

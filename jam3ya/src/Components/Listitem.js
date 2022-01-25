@@ -1,13 +1,13 @@
 import { Button, Card } from "react-bootstrap";
 import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import UpdateJam3yaModal from "./UpdateJam3yaModal";
 import jam3yaStore from "../stores/jam3yaStore";
 import authStore from "../stores/authStore";
 import { observer } from "mobx-react";
 function Listitem(props) {
   const jam3ya = props.jam3ya;
-  const { slug } = useParams();
+  console.log("🚀 ~ file: Listitem.js ~ line 10 ~ Listitem ~ jam3ya", jam3ya);
   const userexist = jam3ya.users.some((u) => u._id === authStore.user._id);
   const [isOpen, setIsOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
@@ -21,9 +21,8 @@ function Listitem(props) {
     jam3yaStore.joinJam3ya(authStore.user, jam3ya);
   };
   const handleLeave = () => {
-    jam3yaStore.leaveJam3ya(authStore.user, jam3ya);
+    jam3yaStore.leaveJam3ya(authStore.user, jam3ya._id);
   };
-  const noewDate = new Date();
 
   const checkJam3ya = () => {
     if (jam3ya.startDate) {
@@ -34,7 +33,7 @@ function Listitem(props) {
 
   return (
     <>
-      <divs>
+      <div>
         <Card style={{ width: "20rem" }}>
           <Card.Title>{jam3ya.title}</Card.Title>
           <Link to={`/jam3ya/${jam3ya.slug}`}>
@@ -72,7 +71,7 @@ function Listitem(props) {
             </Button>
           </Card.Body>
         </Card>
-      </divs>
+      </div>
 
       <UpdateJam3yaModal
         isOpen={isOpen}
