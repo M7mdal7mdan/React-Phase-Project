@@ -23,20 +23,25 @@ function Detail() {
   };
   const checkJam3ya = () => {
     if (jam3ya.startDate) {
-      if (new Date(jam3ya.startDate) > new Date())
-        if (jam3ya.users.length < jam3ya.limit) return true;
+      if (new Date(jam3ya.startDate) > new Date()) return true;
       return false;
     }
   };
   return (
-    <Container fluid>
+    <Container
+      fluid
+      style={{
+        minHeight: "100vh",
+        backgroundColor: "#6998AB",
+      }}
+    >
       <Card
         className="d-flex align-items-center"
         style={{ backgroundColor: "#B1D0E0" }}
       >
         <img className="img-detail" src={jam3ya.image} alt="jam3ya" />
 
-        <Card.Title style={{ marginTop: "10px", fontWeight: "bold" }}>
+        <Card.Title style={{ marginTop: "30px", fontWeight: "bold" }}>
           <h4>Jam3ya Details</h4>
         </Card.Title>
 
@@ -54,7 +59,7 @@ function Detail() {
         </Card.Body>
         {authStore.user && checkJam3ya() && (
           <>
-            {!userexist && (
+            {!userexist && jam3ya.users.length < jam3ya.limit && (
               <Button variant="primary" onClick={handleJoin}>
                 Join
               </Button>
