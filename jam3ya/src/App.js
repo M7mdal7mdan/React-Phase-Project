@@ -1,21 +1,17 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import NavBar from "./Components/NavBar";
+import MyNavBar from "./Components/MyNavBar";
+import Home from "./Components/Home";
 import List from "./Components/List";
-
-
 
 function App() {
   return (
-    <div >
-      <NavBar />
-       <Routes>
-        <Route
-          path="/jam3yaList"
-          element={<List />}
-        />
+    <div>
+      <MyNavBar />
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/List" element={<List />} />
       </Routes>
-      
     </div>
   );
 }
