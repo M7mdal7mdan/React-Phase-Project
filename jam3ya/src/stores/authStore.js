@@ -1,7 +1,9 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, configure } from "mobx";
 import decode from "jwt-decode";
 import api from "./api";
-
+configure({
+  enforceActions: "never",
+});
 class AuthStore {
   user = null;
 
@@ -23,6 +25,10 @@ class AuthStore {
   signIn = async (user) => {
     try {
       const response = await api.post("/signin", user);
+      console.log(
+        "🚀 ~ file: authStore.js ~ line 26 ~ AuthStore ~ signIn= ~ response",
+        response.data
+      );
       this.setUser(response.data.token);
     } catch (error) {}
   };

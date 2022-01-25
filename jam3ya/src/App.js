@@ -2,25 +2,17 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import NavBar from "./Components/NavBar";
 import List from "./Components/List";
-import SearchBar from "./Components/SearchBar";
-
-
+import Detail from "./Components/Detail";
+// import "./App.css";
 
 function App() {
   return (
-    <div >
-      <NavBar  />
-       <Routes>
-        <Route
-          path="/jam3yaList"
-          element={<List />}
-        />
-        <Route
-          path="/searchBar"
-          element={<SearchBar />}
-        />
+    <div>
+      <NavBar />
+      <Routes>
+        <Route path="/jam3yalist" element={<List />} />
+        <Route path="/jam3ya/:slug" element={<Detail />} />
       </Routes>
-      
     </div>
   );
 }

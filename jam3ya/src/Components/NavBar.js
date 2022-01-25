@@ -9,12 +9,12 @@ import { observer } from "mobx-react";
 function Navbar() {
   return (
     <Nav className="justify-content-end" bg="light" expand="lg">
-      <li class="nav-item welcome" >
+      <li className="nav-item welcome">
         lets save your money {authStore.user ? authStore.user.username : ""}
       </li>
 
       {authStore.user ? (
-        <li class="nav-item">
+        <li className="nav-item">
           <Button onClick={authStore.logout}>Logout</Button>
         </li>
       ) : (
