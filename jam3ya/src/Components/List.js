@@ -12,16 +12,16 @@ function List() {
   const openModal = () => setIsOpen(true);
 
   const jam3yasList = jam3yaStore.jam3yas.map((jam3ya) => 
-  <Listitem
+  < Listitem className ="main_content"
   jam3ya={jam3ya}
-  key={jam3ya.id}
+  key={jam3ya._id}
   />
   );
 console.log("jam3yasList",jam3yasList);
   return (
-    <div className="main__chatlist">
+    <div className="card">
       <button className="btn">
-        <i className="fa fa-plus"></i>
+        <i ></i>
         <span onClick={openModal}>New Jam3ya</span>
         <CreateJam3yaModal
           isOpen={isOpen}
@@ -30,12 +30,12 @@ console.log("jam3yasList",jam3yasList);
         />
       </button>
       <center>
-        <div className="chatlist__heading">
+        <div >
           <h2>Jam3ya List</h2>
         </div>
       </center>
 
-      <div className="chatlist__items">{jam3yasList}</div>
+      <div >{jam3yasList}</div>
     </div>
   );
 }
