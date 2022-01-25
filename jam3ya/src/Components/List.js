@@ -26,14 +26,16 @@ function List() {
           createJam3ya={jam3yaStore.createJam3ya}
         />
       </button>
-      <center>
-        <div className="chatlist__heading">
+      
+        <div >
           <h2>Jam3ya List</h2>
         </div>
-      </center>
+      <div>
 
       {jam3yasList}
     </div>
+    </div>
   );
 }
+
 export default observer(List);
