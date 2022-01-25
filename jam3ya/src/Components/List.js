@@ -12,7 +12,7 @@ function List() {
   const openModal = () => setIsOpen(true);
 
   const jam3yasList = jam3yaStore.jam3yas.map((jam3ya) => (
-    <Listitem jam3ya={jam3ya} key={jam3ya.id} />
+    <Listitem jam3ya={jam3ya} key={jam3ya._id} />
   ));
   console.log("jam3yasList", jam3yasList);
   return (
