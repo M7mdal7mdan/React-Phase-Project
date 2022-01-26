@@ -6,6 +6,7 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
+
 .img-detail {
   height: 50vh;
   width: 100%;
@@ -91,4 +92,22 @@
   -webkit-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
   overflow: hidden;
+}
+nav .search {
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+}
+
+nav .search .fa {
+  cursor: pointer;
+}
+
+nav .search .fa + .fa {
+  margin-left: 15px;
+}
+.background {
+  background-color: #f1a372;
+}
+.logo {
+  align-items: center;
 }

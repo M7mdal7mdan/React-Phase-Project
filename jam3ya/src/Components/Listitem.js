@@ -6,6 +6,7 @@ import jam3yaStore from "../stores/jam3yaStore";
 import authStore from "../stores/authStore";
 import { observer } from "mobx-react";
 import moment from "moment";
+
 function Listitem({ jam3ya }) {
   const { user } = authStore;
   const userexist = user && jam3ya.users.some((u) => u._id === user._id);
@@ -30,6 +31,7 @@ function Listitem({ jam3ya }) {
   const handleDelete = () => {
     jam3yaStore.deleteJam3ya(jam3ya._id);
   };
+  
   return (
     <div>
       <Card
