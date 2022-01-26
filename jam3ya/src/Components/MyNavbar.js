@@ -6,9 +6,16 @@ import { observer } from "mobx-react";
 import { Link, NavLink, Route } from "react-router-dom";
 import { Container, Button, Navbar, Nav } from "react-bootstrap";
 import jam3yaStore from "../stores/jam3yaStore";
-import Home from "./Home";
+import SearchBar from "./SearchBar";
+import { useState } from 'react';
+
 
 function MyNavbar() {
+
+  
+
+
+  
   return (
     <Navbar bg="light" variant="light">
       <Container>
@@ -16,13 +23,16 @@ function MyNavbar() {
           lets Save Your Money {authStore.user ? authStore.user.username : ""}
         </Navbar.Brand>
         <Nav className="me-auto" variant="light">
+        <Nav.Item>
+        
+          </Nav.Item>
+          
           <Nav.Item>
             <NavLink to="/">Home</NavLink>
-          </Nav.Item>
 
-          <Nav.Item>
-            <NavLink to="/jam3yalist">Jam3eyat</NavLink>
+            
           </Nav.Item>
+              <NavLink to="/jam3yalist">Jam3eyat</NavLink>
           <Nav.Item>
             {authStore.user ? (
               <Button onClick={authStore.logout}>Logout</Button>

@@ -9,7 +9,9 @@ import './App.css';
 function App() {
   return (
     <div>
+     
       <MyNavbar />
+     
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/jam3yalist" element={<List/>} />
