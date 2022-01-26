@@ -5,6 +5,7 @@ import SignInModal from "./SignInModal";
 import authStore from "../stores/authStore";
 import { Button } from "react-bootstrap";
 import { observer } from "mobx-react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -16,6 +17,7 @@ function Navbar() {
       {authStore.user ? (
         <li className="nav-item">
           <Button onClick={authStore.logout}>Logout</Button>
+          <Link to="/profile">Profile</Link>
         </li>
       ) : (
         <>

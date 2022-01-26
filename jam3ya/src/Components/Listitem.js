@@ -57,30 +57,30 @@ function Listitem({ jam3ya }) {
               : "full"}
           </Card.Text>
 
-          {user && (
+          {user && checkJam3ya() && (
             <>
-              {checkJam3ya() &&
-              !userexist &&
-              jam3ya.users.length < jam3ya.limit ? (
+              {!userexist && jam3ya.users.length < jam3ya.limit ? (
                 <>
                   <Button variant="primary" onClick={handleJoin}>
                     Join
                   </Button>
-                  {jam3ya.author._id === user._id && (
-                    <>
-                      <Button className="delete" onClick={openModal}>
-                        Update
-                      </Button>
-                      <Button className="delete" onClick={handleDelete}>
-                        Delete
-                      </Button>
-                    </>
-                  )}
                 </>
               ) : (
-                <Button variant="primary" onClick={handleLeave}>
-                  Leave
-                </Button>
+                userexist && (
+                  <Button variant="primary" onClick={handleLeave}>
+                    Leave
+                  </Button>
+                )
+              )}
+              {jam3ya.author._id === user._id && (
+                <>
+                  <Button className="delete" onClick={openModal}>
+                    Update
+                  </Button>
+                  <Button className="delete" onClick={handleDelete}>
+                    Delete
+                  </Button>
+                </>
               )}
             </>
           )}

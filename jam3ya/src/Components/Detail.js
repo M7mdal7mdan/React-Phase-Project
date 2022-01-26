@@ -32,7 +32,7 @@ function Detail() {
       fluid
       style={{
         minHeight: "100vh",
-        backgroundColor: "#6998AB",
+        backgroundColor: "#f1a372",
       }}
     >
       <Card

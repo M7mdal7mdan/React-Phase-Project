@@ -15,7 +15,7 @@ function List() {
     <Listitem jam3ya={jam3ya} key={jam3ya._id} />
   ));
   return (
-    <div className="bg-lightblue">
+    <div style={{ backgroundColor: "#f1a372" }}>
       <button className="btn ">
         <i className="fa fa-plus"></i>
         <span onClick={openModal}>New Jam3ya</span>

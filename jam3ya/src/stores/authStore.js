@@ -22,6 +22,14 @@ class AuthStore {
       this.setUser(response.data.token);
     } catch (error) {}
   };
+  update = async (user) => {
+    try {
+      const response = await api.post("/update", user);
+      this.user = response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
   signIn = async (user) => {
     try {
       const response = await api.post("/signin", user);
