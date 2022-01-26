@@ -68,6 +68,7 @@ class Jam3yaStore {
       console.log(error);
     }
   };
+  ///jm3iaa
   joinJam3ya = async (user, jam3ya) => {
     try {
       await api.post(`/jam3ya/join/${jam3ya._id}`, user);
