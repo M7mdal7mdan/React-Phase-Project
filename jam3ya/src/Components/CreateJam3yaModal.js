@@ -1,7 +1,6 @@
 import { Modal, Button, InputGroup, Form } from "react-bootstrap";
 import React, { useState } from "react";
 import jam3yaStore from "../stores/jam3yaStore";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 
@@ -16,8 +15,8 @@ export default function CreateJam3yaModal(props) {
     endDate:"",
     
   });
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  // const [startDate, setStartDate] = useState(new Date());
+  // const [endDate, setEndDate] = useState(new Date());
   console.log("🚀 ~ file: CreateJam3yaModal.js ~ line 10 ~ CreateJam3yaModal ~ jam3ya", jam3ya)
 
   const handleChange = (e) => {
