@@ -6,13 +6,13 @@ import jam3yaStore from "../stores/jam3yaStore";
 import authStore from "../stores/authStore";
 import { observer } from "mobx-react";
 import moment from "moment";
-function Listitem(props) {
-  const jam3ya = props.jam3ya;
-  const userexist = jam3ya.users.some((u) => u._id === authStore.user._id);
+function Listitem({ jam3ya }) {
+  const { user } = authStore;
+  const userexist = user && jam3ya.users.some((u) => u._id === user._id);
   const [isOpen, setIsOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
   const handleJoin = () => {
-    jam3yaStore.joinJam3ya(authStore.user, jam3ya);
+    jam3yaStore.joinJam3ya(user, jam3ya);
   };
   const handleLeave = () => {
     jam3yaStore.leaveJam3ya(jam3ya._id);
@@ -56,32 +56,35 @@ function Listitem(props) {
               ? jam3ya.limit - jam3ya.users.length
               : "full"}
           </Card.Text>
-          {authStore.user && checkJam3ya() && (
-            <>
-              {!userexist && jam3ya.users.length < jam3ya.limit && (
-                <Button variant="primary" onClick={handleJoin}>
-                  Join
-                </Button>
-              )}
 
-              {userexist && (
+          {user && (
+            <>
+              {checkJam3ya() &&
+              !userexist &&
+              jam3ya.users.length < jam3ya.limit ? (
+                <>
+                  <Button variant="primary" onClick={handleJoin}>
+                    Join
+                  </Button>
+                  {jam3ya.author._id === user._id && (
+                    <>
+                      <Button className="delete" onClick={openModal}>
+                        Update
+                      </Button>
+                      <Button className="delete" onClick={handleDelete}>
+                        Delete
+                      </Button>
+                    </>
+                  )}
+                </>
+              ) : (
                 <Button variant="primary" onClick={handleLeave}>
                   Leave
                 </Button>
               )}
             </>
           )}
-          {jam3ya.author._id === authStore.user._id && (
-            <Button className="delete" onClick={handleDelete}>
-              Delete
-            </Button>
-          )}
 
-          {checkJam3ya() && jam3ya.author._id === authStore.user._id && (
-            <Button className="delete" onClick={openModal}>
-              Update
-            </Button>
-          )}
           <UpdateJam3yaModal
             isOpen={isOpen}
             closeModal={closeModal}
