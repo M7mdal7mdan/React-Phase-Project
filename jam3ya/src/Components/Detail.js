@@ -7,11 +7,14 @@ import moment from "moment";
 import authStore from "../stores/authStore";
 import Swal from 'sweetalert2'
 import UpdateJam3yaModal from "./UpdateJam3yaModal"
+import { useNavigate } from "react-router-dom";
+
 
 function Detail() {
   const [isOpen, setIsOpen] = useState(false);
     const closeModal = () => setIsOpen(false);
   const slug = useParams().slug;
+  let navigate = useNavigate();
   if (jam3yaStore.loading) {
     return <h1>Loading</h1>;
   }
@@ -28,6 +31,7 @@ function Detail() {
         '',
         'success'
       )
+      navigate(`/profile`);
     };
   const handleJoin = () => {
       jam3yaStore.joinJam3ya(user, jam3ya);
