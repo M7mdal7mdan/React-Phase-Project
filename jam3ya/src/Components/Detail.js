@@ -5,7 +5,8 @@ import { Container, Card, Button } from "react-bootstrap";
 import { observer } from "mobx-react";
 import moment from "moment";
 import authStore from "../stores/authStore";
-
+import Swal from 'sweetalert2'
+import UpdateJam3yaModal from "./UpdateJam3yaModal"
 
 function Detail() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,12 +23,28 @@ function Detail() {
   
     const handleDelete = () => {
       jam3yaStore.deleteJam3ya(jam3ya._id);
+      Swal.fire(
+        `${jam3ya.title} Jam3ya has been deleted successfully `,
+        '',
+        'success'
+      )
     };
   const handleJoin = () => {
       jam3yaStore.joinJam3ya(user, jam3ya);
+      
+      Swal.fire(
+        `You have joined ${jam3ya.title}`,
+        '',
+        'success'
+      )
     };
     const handleLeave = () => {
       jam3yaStore.leaveJam3ya(jam3ya._id);
+      Swal.fire(
+        'We are sorry to see you go',
+        '',
+        'success'
+      )
     };
     const startDate = moment(jam3ya.startDate).format("YYYY-MM-DD");
     const endDate = moment(jam3ya.endDate).format("YYYY-MM-DD");
@@ -98,6 +115,11 @@ function Detail() {
                   </Button>
                 </>
               )}
+              <UpdateJam3yaModal
+            isOpen={isOpen}
+            closeModal={closeModal}
+            jam3ya={jam3ya}
+          />
             </div>
           )}
       </Card>

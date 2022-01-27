@@ -1,7 +1,7 @@
 import { Modal, Button, InputGroup, Form } from "react-bootstrap";
 import React, { useState } from "react";
 import jam3yaStore from "../stores/jam3yaStore";
-
+import Swal from 'sweetalert2'
 
 function UpdateJam3yaModal(props) {
   const [jam3ya, setJam3ya] = useState({
@@ -20,6 +20,13 @@ function UpdateJam3yaModal(props) {
     event.preventDefault();
     jam3yaStore.updateJam3ya(jam3ya);
     props.closeModal();
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Your work has been updated',
+      showConfirmButton: false,
+      timer: 1500
+    })
   };
   return (
     <Modal centered show={props.isOpen} onHide={props.closeModal}>
@@ -124,7 +131,7 @@ function UpdateJam3yaModal(props) {
       </Modal.Body>
       <Modal.Footer>
     
-        <Button variant="primary" onClick={handleSubmit}>
+        <Button variant="secondary" onClick={handleSubmit}>
           Update jam3ya
         </Button>
       </Modal.Footer>

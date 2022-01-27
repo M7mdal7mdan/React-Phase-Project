@@ -141,7 +141,7 @@ export default function CreateJam3yaModal(props) {
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="primary" onClick={handleSubmit}>
+            <Button variant="secondary" onClick={handleSubmit}>
               Create Jam3ya
             </Button>
           </Modal.Footer>
