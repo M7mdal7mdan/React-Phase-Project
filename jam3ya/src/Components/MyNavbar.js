@@ -1,59 +1,54 @@
-import React from "react";
+import React, { Component } from 'react';
+import { Navbar,Nav,NavDropdown,Form,FormControl,Button,Container } from 'react-bootstrap';
 import SignUpModal from "./SignUpModal";
 import SignInModal from "./SignInModal";
 import authStore from "../stores/authStore";
 import { observer } from "mobx-react";
 import { Link, NavLink, Route } from "react-router-dom";
-import { Container, Button, Navbar, Nav } from "react-bootstrap";
-import jam3yaStore from "../stores/jam3yaStore";
-import SearchBar from "./SearchBar";
-import { useState } from 'react';
 
 
-function MyNavbar() {
-
-  
-
-
-  
-  return (
-    <Navbar bg="light" variant="light">
-      <Container>
-        <Navbar.Brand>
-          lets Save Your Money {authStore.user ? authStore.user.username : ""}
-        </Navbar.Brand>
-        <Nav className="me-auto" variant="light">
-        <Nav.Item>
-        
-          </Nav.Item>
-          
-          <Nav.Item>
-            <NavLink to="/">Home</NavLink>
-
-            
-          </Nav.Item>
-              <NavLink to="/jam3yalist">Jam3eyat</NavLink>
-          <Nav.Item>
+function MyNavbar() { {
+    return <>
+      
+  <Navbar sticky="top" bg="dark" variant="dark" >
+    <Container>
+      <Nav.Item  class="navbar-brand">
+      <Link to ="/">
+      <img src="https://www.inventicons.com/uploads/iconset/450/wm/512/Money-saving-15.png" width="45" alt="" class="d-inline-block align-middle mr-2"/>
+      </Link>
+      <span class="text-uppercase font-weight-bold">&nbsp;&nbsp;Lets Save Your Money {authStore.user ? authStore.user.username : ""}</span>
+      </Nav.Item>
+      
+    
+    {/* <Navbar.Brand href="#home">Lets Save Your Money {authStore.user ? authStore.user.username : ""}</Navbar.Brand> */}
+    <Nav className="mr-auto">
+      <Nav.Link as={Link} to="/">Home</Nav.Link>
+      <Nav.Link as={Link} to="/jam3yalist">Jam3ya List</Nav.Link>
+      
+      
             {authStore.user ? (
-              <Button onClick={authStore.logout}>Logout</Button>
-            ) : (
               <>
-                <SignUpModal />
+              <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
+              <Nav.Item>
+              <Button variant='outline-secondary' onClick={authStore.logout}>Logout</Button>
+           </Nav.Item>
+            </>
+           ) : (
+             <>
+              <Nav.Item >
+                <SignUpModal /></Nav.Item>
+                <Nav.Item className="mx-1">
                 <SignInModal />
-              </>
+                </Nav.Item ></>
             )}
-          </Nav.Item>
-        </Nav>
-      </Container>
+          
+    </Nav>
+    </Container>
+  </Navbar>
+  
 
-      <Nav className="nav">
-        <li class="nav-item welcome"></li>
-
-        <li></li>
-        <li></li>
-      </Nav>
-    </Navbar>
-  );
+    </>;
+  }
 }
-
 export default observer(MyNavbar);
+

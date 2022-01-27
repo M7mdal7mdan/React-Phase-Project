@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import authStore from "../stores/authStore";
 import jam3yaStore from "../stores/jam3yaStore";
+import "./Card.css";
 import {
   Button,
   Modal,
@@ -37,19 +38,17 @@ function Profile() {
     <Listitem jam3ya={jam3ya} key={jam3ya._id} />
   ));
   return (
-    <Container
-      fluid
-      style={{
-        minHeight: "100vh",
-        backgroundColor: "#f1a372",
-      }}
+    <Container className="background"
     >
-      <Button className="delete" onClick={() => setIsOpen(true)}>
-        Update Profile
-      </Button>
+      <Container>
+       <Button variant='secondary' className="delete  align-right" onClick={() => setIsOpen(true)}>
+       Update Profile
+     </Button>
+     </Container>
+     
       <Modal centered show={isOpen} onHide={() => setIsOpen(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Update Profile</Modal.Title>
+          <Modal.Title >Update Profile</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
@@ -93,15 +92,12 @@ function Profile() {
           </Button>
         </Modal.Footer>
       </Modal>
-      <h2 style={{ marginBottom: "50px" }}>
+      <h2 style={{ marginBottom: "50px", color:"white", marginTop:"15px" }}>
         Monthly payment: {monthlyPay} <Badge bg="secondary">KD</Badge>
       </h2>
       <div
         className="card-flex"
-        style={{
-          minHeight: "100vh",
-          backgroundColor: "#6998AB",
-        }}
+        
       >
         {jam3yasListView}
       </div>

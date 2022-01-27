@@ -4,6 +4,10 @@ import CreateJam3yaModal from "./CreateJam3yaModal";
 import jam3yaStore from "../stores/jam3yaStore";
 import { observer } from "mobx-react";
 import SearchBar from "./SearchBar";
+import Hero2 from "./Hero2";
+import { Navbar,Nav,NavDropdown,Form,FormControl,Button,Container } from 'react-bootstrap';
+
+
 
 function List() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,12 +30,15 @@ function List() {
   }
 
   return (
-    <div className="bg-lightblue">
-      <div>
-        <SearchBar setQuery={setQuery} />
-      </div>
+    
+    <Container className="background">
+       
 
-      <button className="btn ">
+      
+        
+        <SearchBar setQuery={setQuery} />
+
+      <Button variant='secondary' className="btn see ">
         <i className="fa fa-plus"></i>
         <span onClick={openModal}>New Jam3ya</span>
 
@@ -40,14 +47,14 @@ function List() {
           closeModal={closeModal}
           createJam3ya={jam3yaStore.createJam3ya}
         />
-      </button>
+      </Button>
       <center>
-        <div className="chatlist__heading" style={{ marginBottom: "40px" }}>
+        <div className="chatlist__heading" style={{ marginBottom: "40px" , color:"white" }}>
           <h2>Jam3ya List</h2>
         </div>
       </center>
-      <div className="card-flex">{jam3yasList}</div>
-    </div>
+      <div className="card-flex " >{jam3yasList}</div>
+    </Container>
   );
 }
 
