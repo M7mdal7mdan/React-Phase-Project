@@ -1,4 +1,4 @@
-import { Modal, Button, Form } from "react-bootstrap";
+import { Modal, Button, Form,InputGroup } from "react-bootstrap";
 import React, { useState } from "react";
 import authStore from "../stores/authStore";
 
@@ -20,7 +20,7 @@ function SignUpModal() {
 
   return (
     <>
-      <Button className="delete" onClick={() => setIsOpen(true)}>
+      <Button variant='outline-secondary' className="delete" onClick={() => setIsOpen(true)}>
         Sign Up
       </Button>
       <Modal centered show={isOpen} onHide={() => setIsOpen(false)}>
@@ -29,32 +29,45 @@ function SignUpModal() {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
-            <input
+          <InputGroup>
+                <InputGroup.Text>UserName</InputGroup.Text>
+                <Form.Control
+            
               name="username"
               value={user.username}
               type="text"
               placeholder="username here"
               onChange={handChange}
             />
-
-            <input
+               </InputGroup>
+              <br />
+              <InputGroup>
+                <InputGroup.Text>Password</InputGroup.Text>
+                <Form.Control
+            
               name="password"
               value={user.password}
               type="password"
               placeholder="password here"
               onChange={handChange}
             />
-            <input
+            </InputGroup>
+              <br />
+              <InputGroup>
+                <InputGroup.Text>Email</InputGroup.Text>
+                <Form.Control
+            
               name="email"
               value={user.email}
               type="text"
               placeholder="email here"
               onChange={handChange}
             />
+             </InputGroup>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleSubmit}>
+          <Button variant='outline-secondary' onClick={handleSubmit}>
             Sign up
           </Button>
         </Modal.Footer>

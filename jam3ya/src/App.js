@@ -6,19 +6,22 @@ import MyNavbar from "./Components/MyNavbar";
 import Home from "./Components/Home";
 import Detail from "./Components/Detail";
 import "./App.css";
+import { Layout } from "./Components/Layout";
+
 
 function App() {
   return (
-    <div>
+    <React.Fragment>
       <MyNavbar />
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/jam3yalist" element={<List />} />
-        <Route path="/jam3ya/:slug" element={<Detail />} />
-        <Route path="/profile" element={<Profile />} />
-      </Routes>
-    </div>
+           <Layout>
+               <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/jam3yalist" element={<List />} />
+                    <Route path="/jam3ya/:slug" element={<Detail />} />
+                    <Route path="/profile" element={<Profile />} />
+                </Routes>
+            </Layout>
+    </React.Fragment>
   );
 }
 
